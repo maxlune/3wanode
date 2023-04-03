@@ -14,6 +14,8 @@
 
 const fs = require("fs");
 
+const newStudents = "18 Sonia Paris\n17 Clarisse Marseille\n";
+
 try {
   const data = fs.readFileSync("students.txt", "utf8");
   console.log(data);
@@ -47,5 +49,11 @@ fs.readFile("students.txt", "utf8", (err, data) => {
   const bestStudent = students.reduce((prev, curr) => {
     return prev.grade > curr.grade ? prev : curr;
   });
+
   console.log(`Le meilleur étudiant : ${bestStudent.name}`);
+
+  fs.appendFile("students.txt", newStudents, (err) => {
+    if (err) throw err;
+    console.log("Saved!");
+  });
 });
