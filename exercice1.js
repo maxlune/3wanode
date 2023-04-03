@@ -6,68 +6,68 @@
 
 // 3. Pensez à gérer également les erreurs de saisi dans le jeu.
 
-// const secretNumber = Math.floor(Math.random() * 100) + 1;
-// let attempts = 10;
+const secretNumber = Math.floor(Math.random() * 100) + 1;
+let attempts = 10;
 
-// console.log("Devinez un nombre entre 1 et 100.");
+console.log("Devinez un nombre entre 1 et 100.");
 
-// process.stdin.on("data", (input) => {
-//   const userGuess = parseInt(input);
+process.stdin.on("data", (input) => {
+  const userGuess = parseInt(input);
 
-//   if (userGuess >= 1 && userGuess <= 100) {
-//     if (userGuess === secretNumber) {
-//       console.log("Vous avez trouvé le nombre secret !");
-//       process.exit();
-//     } else {
-//       attempts -= 1;
+  if (userGuess >= 1 && userGuess <= 100) {
+    if (userGuess === secretNumber) {
+      console.log("Vous avez trouvé le nombre secret !");
+      process.exit();
+    } else {
+      attempts -= 1;
 
-//       if (attempts === 0) {
-//         console.log(`Perdu. Le nombre secret était ${secretNumber}.`);
-//         process.exit();
-//       } else {
-//         console.log(
-//           "Le nombre secret est " +
-//             (userGuess < secretNumber ? "plus grand" : "plus petit") +
-//             "."
-//         );
-//         console.log(`Il reste ${attempts} tentatives.`);
-//       }
-//     }
-//   } else {
-//     console.log("Veuillez entrer un nombre entre 1 et 100.");
-//   }
-// });
+      if (attempts === 0) {
+        console.log(`Perdu. Le nombre secret était ${secretNumber}.`);
+        process.exit();
+      } else {
+        console.log(
+          "Le nombre secret est " +
+            (userGuess < secretNumber ? "plus grand" : "plus petit") +
+            "."
+        );
+        console.log(`Il reste ${attempts} tentatives.`);
+      }
+    }
+  } else {
+    console.log("Veuillez entrer un nombre entre 1 et 100.");
+  }
+});
 
 // CORRECTION
 
-let count = 0;
+// let count = 0;
 
-process.stdout.write(
-  "Vous devez choisir un nombre compris entre 1 et 100 pour trouver le nombre en or !"
-);
+// process.stdout.write(
+//   "Vous devez choisir un nombre compris entre 1 et 100 pour trouver le nombre en or !"
+// );
 
-process.stdin.on("data", (chunk) => {
-  const number = parseInt(chunk);
-  const goldNumber = 42;
+// process.stdin.on("data", (chunk) => {
+//   const number = parseInt(chunk);
+//   const goldNumber = 42;
 
-  count++;
+//   count++;
 
-  if (isNaN(number) === true) {
-    process.stdout.write("UN NOMBRE !");
-  }
+//   if (isNaN(number) === true) {
+//     process.stdout.write("UN NOMBRE !");
+//   }
 
-  if (count >= 10) {
-    process.stdout.write("Vous avez dépasser les 10 tentatives");
-  }
+//   if (count >= 10) {
+//     process.stdout.write("Vous avez dépasser les 10 tentatives");
+//   }
 
-  if (number > goldNumber) {
-    process.stdout.write(`Le nombre en or est plus petit que ${number}`);
-  } else if (number < goldNumber) {
-    process.stdout.write(`Le nombre en or est plus petit que ${number}`);
-  } else {
-    process.stdout.write(
-      `Vous avez trouvé en ${count} tentatives le nombre ${goldNumber}`
-    );
-    process.exit(0);
-  }
-});
+//   if (number > goldNumber) {
+//     process.stdout.write(`Le nombre en or est plus petit que ${number}`);
+//   } else if (number < goldNumber) {
+//     process.stdout.write(`Le nombre en or est plus petit que ${number}`);
+//   } else {
+//     process.stdout.write(
+//       `Vous avez trouvé en ${count} tentatives le nombre ${goldNumber}`
+//     );
+//     process.exit(0);
+//   }
+// });
