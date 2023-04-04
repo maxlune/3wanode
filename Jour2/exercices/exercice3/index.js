@@ -39,7 +39,7 @@ students.forEach((student) => {
       ? "Assez bien"
       : note >= PASSABLE
       ? "Passable"
-      : "No mention";
+      : "Pas de mention";
 });
 
 console.log(students);
