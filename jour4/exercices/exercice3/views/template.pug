@@ -1,0 +1,11 @@
+head
+  meta(charset="utf-8")
+body
+  div.user-card
+    h4 #{loggedUser.name.first} #{loggedUser.name.last.toUpperCase()} (#{loggedUser.age} ans)
+    p Né le #{loggedUser.birthdate.toLocaleDateString()}
+    p
+      | Vit à 
+      strong #{loggedUser.location.city}, #{loggedUser.location.zipcode}
+    if loggedUser.isAdmin
+      span Est administrateur
