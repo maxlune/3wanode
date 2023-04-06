@@ -20,6 +20,11 @@ const pug = require("pug");
 //   }
 // );
 
-const compileTemplate = pug.compileFile("./views/template.pug");
-const result = compileTemplate({ user: { isAdmin: false } });
-console.log(result);
+try {
+  const compileTemplate = pug.compileFile("./views/template.pug");
+  const result = compileTemplate({ user: { isAdmin: true } });
+  console.log(result);
+} catch (err) {
+  console.log("Erreur lors de la compilation :\n");
+  console.log(err.message);
+}
