@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ajoutez un utilisateur</title>
+    <link href="/bootstrap" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-light bg-light">
+        <div class="container">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/users">Users</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="form-container">
+            <h1>Ajoutez un utilisateur</h1>
+            <form action="/" method="POST">
+              <div class="form-group">
+                <label for="name">Nom</label>
+                <input class="form-control" id="name" name="name" type="text" />
+              </div>
+              <div class="form-group">
+                <label for="birth">Date de naissance</label>
+                <input
+                  class="form-control"
+                  id="birth"
+                  name="birth"
+                  type="date"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Ajouter</button>
+            </form>
+            <div class="users-link">
+              <a class="text-primary" href="/users">Voir les utilisateurs</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

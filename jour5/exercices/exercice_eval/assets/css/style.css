@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.container {
+  max-width: 600px;
+  margin-top: 100px;
+}
+
+.form-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.btn {
+  width: 100%;
+}
+
+.users-link {
+  margin-top: 20px;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+.btn-delete {
+  width: 100px;
+  height: 30px;
+  padding: 0;
+  margin-left: 10px;
+}
