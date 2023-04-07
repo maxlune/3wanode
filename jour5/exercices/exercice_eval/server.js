@@ -127,15 +127,7 @@ const server = http.createServer((req, res) => {
                     </div>
                     <script>
                     function deleteUser(name) {
-                      fetch("/users/delete?name=" + name, {
-                        method: "DELETE",
-                      }).then(function (response) {
-                        if (response.ok) {
-                          location.reload();
-                        } else {
-                          console.error("Erreur lors de la suppression de l'utilisateur");
-                        }
-                      });
+                      ${utils.deleteUser.toString()}(name);
                     }
                     </script>
                 </body>    
