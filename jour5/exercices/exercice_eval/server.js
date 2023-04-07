@@ -5,7 +5,9 @@ const fr = require("dayjs/locale/fr");
 dayjs.locale(fr);
 
 require("dotenv").config();
-const { APP_ENV, APP_LOCALHOST, APP_PORT } = process.env;
+const { APP_LOCALHOST, APP_PORT } = process.env;
+const { generateUsersList } = require("./utils");
+const { getUsersPage } = require("./Data/users");
 
 const students = [
   { name: "Sonia", birth: "2019-14-05" },
@@ -81,58 +83,10 @@ const server = http.createServer((req, res) => {
   if (url === "users") {
     res.writeHead(200, { "Content-Type": "text/html" });
 
-    let users = "<ul class='list-group'>";
-    for (const { name, birth } of students) {
-      const formattedBirth = dayjs(birth).format("DD MMMM YYYY");
-      users += `<li class="list-group-item d-flex justify-content-between align-items-center">
-  ${name} - ${formattedBirth}
-  <button class="btn btn-danger btn-sm btn-delete" onclick="deleteUser('${name}')">Supprimer</button>
-  </li>`;
-    }
+    const usersList = generateUsersList(students);
+    const usersPage = getUsersPage(usersList);
 
-    users += "</ul>";
-
-    res.end(`
-            <!DOCTYPE html>
-            <html>
-                <head>
-                    <meta charset="utf-8">
-                    <title>Liste des étudiants</title>
-                    <link href="/bootstrap" rel="stylesheet" type="text/css" />
-                    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
-                </head>
-                <body>
-                    <header>
-                        <nav class="navbar navbar-light bg-light">
-                            <div class="container">
-                                <ul class="nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/users">Users</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </header>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <h2>Liste des étudiants</h2>
-                                ${users}
-                                <p><a href="/">Retour à l'accueil</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <script>
-                    function deleteUser(name) {
-                      ${utils.deleteUser.toString()}(name);
-                    }
-                    </script>
-                </body>    
-            </html>
-        `);
+    res.end(usersPage);
   }
 });
 

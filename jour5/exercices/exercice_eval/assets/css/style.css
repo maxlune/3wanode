@@ -35,6 +35,14 @@ h1 {
   width: 100%;
 }
 
+.users-list-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
 .btn-delete {
   width: 100px;
   height: 30px;
