@@ -1,0 +1,44 @@
+body {
+  margin: auto;
+}
+
+header {
+  color: white;
+  background-color: #040507;
+  padding: 10px;
+  display: flex;
+}
+
+.left {
+  flex-basis: 35%;
+  background-color: #040507;
+  color: white;
+  padding: 5px;
+}
+
+/* .right {
+  flex-basis: 55%;
+  background-color: #272a2f;
+  padding: 5px;
+} */
+
+.container {
+  display: flex;
+}
+
+.container-left {
+  background-color: #f8f9fa;
+  border-right: 1px solid #e0e2e3;
+  width: 30%;
+  padding: 10px
+}
+
+.container-right {
+  margin: 2em;
+}
+
+.test {
+  background-color: #e5e5e5;
+  padding: 2px;
+  font-weight: bold;
+}
