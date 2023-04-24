@@ -1,0 +1,190 @@
+nav
+  ul
+    li
+      a(href="/home") Home
+    li 
+      a(href="/portfolio") Portfolio
+    li 
+      a(href="/contact") Contact
+
+//- Même chose :
+nav: ul
+  li: a(href="/home") Home
+  li: a(href="/portfolio") Portfolio
+  li: a(href="/contact") Contact
+
+input(type='radio' name='gender' value='Male')
+
+input(
+  type='radio' 
+  name='gender' 
+  value='Male'
+)
+
+main#container 
+  article 
+    //- Créer une div avec une classe article-inner
+    .article-inner
+      //- Récupère un bloc de texte sur plusieurs lignes
+      p.
+        Lorem Ipsum 
+        fsdfsdfqsf
+        dfsgfdgq
+
+p 
+  Ceci est un texte <strong> gras </strong>
+
+p Un nouveau texte 
+    strong gras 
+
+div 
+  p Je suis un paragraphe 
+  | Je suis en dehors du paragraphe 
+
+h1 Hello #{name}
+p Vous avez #{age} et êtes #{gender}
+
+h1 Hello #{name}
+
+p Votre âge :
+  output= age
+
+select
+  option(value=gender)= gender
+
+article 
+  //- Pour faire du js dans le pug : -
+  - const { title, date, author } = post 
+  h1= title 
+  p Written by #{author}
+  time(datetime=date.toISOString()) = date.toLocalDateString()
+
+article 
+  -
+    const { title, date, author } = post;
+    const ISODate = date.toISOString();
+    const formattedDate = date.toLocalDateString()
+  h1=title 
+  p Written by #{author}
+  time(datetime=ISODate) = formattedDate
+
+input(type="text" id="message")
+p Hello <span id="messageValue"></span>
+
+script. 
+  const messageEl = document.getElementById("message")
+  const span = document.getElementById("messageValue")
+  messageEl.oninput = function(event) {
+    span.textContent = event.target.value
+  }
+
+if results 
+  if results.length > 1
+    p Il y a #{results.length} résultats de recherche 
+  else if results.length === 1
+    p Il y a un unique résultat 
+  else
+    p aucun résultat 
+else 
+  p Aucune recherche effectuée 
+
+unless user.logged 
+  p Veuillez vous authentifier
+
+if !user.logged 
+  p Veuillez vous authentifier
+
+case user.gender 
+  when 'M'
+    p Homme 
+  when 'F'
+    p Femme 
+  default 
+    p Autre
+  
+//- Commentaire non affiché dans le rendu
+// Lui oui
+<!-- Commentaire html -->
+
+//- Boucles each
+- const users = ['Norbert', 'Antoine', 'Dougy'];
+ul#users
+  each user in users 
+    li #{user} (#{index})
+
+//- Boucle for
+ul#users 
+  - const users = new Set(['JM', 'Antoine', 'Marion']);
+  - for (const user of users)
+    li= user
+  
+//- Boucle while
+- let i = 1;
+
+while i <= 10
+  div= i 
+  - i++
+
+//- Mixin
+mixin menuItem 
+  li: a(href="#") Menu item 
+ul 
+  +menuItem
+  +menuItem
+  +menuItem
+
+//- Minin avec arguments
+mixin menuItem(url, title)
+  li: a(href="url")= title 
+ul 
+  +menuItem('/', 'Home')
+  +menuItem('/portfolio', 'Réalisations')
+  +menuItem('/contact', 'Me contacter')
+
+//- 
+mixin listItem(value)
+  li&attributes(attributes)= value
+
+ul 
+  +listItem('One')(class='truc')
+  +listItem('Two')(class='machin' title='Je suis machin')
+
+//- Inclusions et Layouts
+
+//- Fichier principal
+header 
+  include menu.pug 
+main.container 
+  h1 Welcome!
+
+//- Fichier "menu.pug"
+nav: ul 
+  li: a(href='/') Home
+  li: a(href='/portfolio') Réalisations 
+
+//- frontend-layout.pug
+doctype html 
+html (lang="fr")
+  head 
+    meta (charset="UTF-8")
+    title My Layout 
+    link(rel="stylesheet" href="bootstrap.min.css")
+    block styles
+    block scripts 
+  body 
+    header: nav: ul 
+      li: a(href='/') Home
+      li: a(href='/portfolio') Réalisations 
+    block content 
+  footer Copyright, tous droits réservés 
+
+//- Exemple d'utilisation du layout
+extends frontend-layouot.pug 
+block styles 
+  link(rel="stylesheet" href="monCSSpourCETTEpage.css")
+block scripts 
+  script(src="monScript.js")
+block content 
+  h1 Welcome! What are you buying?
+
+

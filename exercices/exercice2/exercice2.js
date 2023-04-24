@@ -46,13 +46,13 @@ fs.readFile("students.txt", "utf8", (err, data) => {
 
   console.log(students);
 
-  const bestStudent = students.reduce((prev, curr) => {
-    return prev.grade > curr.grade ? prev : curr;
+  const bestStudent = students.reduce((previous, current) => {
+    return previous.grade > current.grade ? previous : current;
   });
 
   console.log(`Le meilleur étudiant : ${bestStudent.name}`);
 
-  fs.appendFile("students.txt", newStudents, (err) => {
+  fs.appendFile("students.txt", newStudents.toUpperCase(), (err) => {
     if (err) throw err;
     console.log("Saved!");
   });

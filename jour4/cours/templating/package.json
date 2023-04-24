@@ -1,7 +1,8 @@
 {
-  "name": "exercice5",
+  "name": "templating",
   "version": "1.0.0",
-  "main": "app.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -9,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "readline": "^1.3.0"
-  },
-  "description": ""
+    "pug": "^3.0.2"
+  }
 }

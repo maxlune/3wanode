@@ -3,8 +3,9 @@
 // 2. Installez maintenant la dépendance dotenv dans votre projet.
 
 // 3. Utilisez la documentation https://www.npmjs.com/package/dotenv et définissez la variable de production/developpement suivant :
+require("dotenv").config();
 
-if (process.env.APP_EN) {
+if (process.env.APP_ENV === "production") {
   console.log("Je suis en production");
 } else {
   console.log("Je suis en développement");
@@ -12,4 +13,4 @@ if (process.env.APP_EN) {
 
 // *Remarque si vous changez de dossier pour définir vos variables d'environnement utilisez la syntaxe suivante pour indiquer à dotenv où se trouve vos données 😗
 
-require("dotenv").config({ path: "/custom/path/to/.env" });
+// require("dotenv").config({ path: "/custom/path/to/.env" });
