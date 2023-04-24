@@ -22,23 +22,12 @@ app.get("/", function (req, res, next) {
   next();
 });
 
-// io.on("connection", (socket) => {
-//   console.log("Client", socket.id, "is connected via WebSockets");
-//   socket.on("disconnect", () => {
-//     console.log("Client", socket.id, " disconnected");
-//   });
-//   socket.on("chat message", (msg) => {
-//     console.log("message: " + msg);
-//   });
-// });
-
 io.on("connection", (socket) => {
   console.log("Client", socket.id, "is connected via WebSockets");
   socket.on("disconnect", () => {
     console.log("Client", socket.id, " disconnected");
   });
   socket.on("chat message", (msg) => {
-    // io.emit("chat message", msg);
     io.emit("chat message", { id: socket.id, message: msg });
     console.log("message: " + msg);
   });

@@ -16,12 +16,6 @@ header {
   padding: 5px;
 }
 
-/* .right {
-  flex-basis: 55%;
-  background-color: #272a2f;
-  padding: 5px;
-} */
-
 .container {
   display: flex;
 }
