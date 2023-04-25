@@ -84,6 +84,9 @@ class Client {
                         ${message}
                     </li>`;
     this.$messages.prepend(html);
+    this.$message.on("input", () => {
+      this.socket.emit("notify:typing", this.nickname);
+    });
   }
 
   showNickname() {
