@@ -3,6 +3,8 @@ console.log("Hello World!");
 
 const socket = io.connect("http://localhost:9000");
 
+this.nickname = window.prompt("Choississez un pseudo");
+
 socket.on("connect", () => {
   console.log("Connected to server");
 });
