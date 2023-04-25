@@ -15,6 +15,9 @@ class Client {
     this.$form = $("form#chat");
     this.$message = $("input#message");
     this.$messages = $("ul#messages");
+    this.$users = $("ul#users");
+    this.socket.on("users:update", (users) => this.updateUsersList(users));
+    this.socket.emit("user:join", this.nickname);
 
     /*
             La syntaxe ({nickname, message}) est appelée en ES6 "Object param destructuring"
@@ -68,5 +71,13 @@ class Client {
                         ${message}
                     </li>`;
     this.$messages.prepend(html);
+  }
+
+  updateUsersList(users) {
+    this.$users.empty();
+    users.forEach((user) => {
+      const html = `<li>${user}</li>`;
+      this.$users.append(html);
+    });
   }
 }

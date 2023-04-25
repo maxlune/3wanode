@@ -11,6 +11,13 @@ class Chat {
 
   onConnection(socket) {
     console.log(`Client`, socket.id, "is connected via WebSockets");
+    socket.on("user:join", (nickname) => {
+      this.addUser(socket, nickname);
+    });
+
+    socket.on("disconnect", () => {
+      this.removeUser(socket.id);
+    });
 
     socket.on("message:new", ({ message, nickname }) =>
       this._onNewMessage(socket, nickname, message)
@@ -29,6 +36,23 @@ class Chat {
     nickname = ent.encode(nickname);
 
     this.io.sockets.emit("message:new", { message, nickname });
+  }
+
+  addUser(socket, nickname) {
+    const user = new User(socket.id, nickname);
+    this.users.push(user);
+    this.io.sockets.emit(
+      "users:update",
+      this.users.map((user) => user.nickname)
+    );
+  }
+
+  removeUser(socketId) {
+    this.users = this.users.filter((user) => user.id !== socketId);
+    this.io.sockets.emit(
+      "users:update",
+      this.users.map((user) => user.nickname)
+    );
   }
 }
 
