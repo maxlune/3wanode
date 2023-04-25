@@ -43,3 +43,7 @@ aside {
 #chat {
   width: 80%;
 }
+
+.typing {
+  padding: 10px
+}

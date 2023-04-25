@@ -22,6 +22,10 @@ class Chat {
     socket.on("message:new", ({ message, nickname }) =>
       this._onNewMessage(socket, nickname, message)
     );
+
+    socket.on("notify:typing", (nickname) => {
+      socket.broadcast.emit("notify:typing", nickname);
+    });
   }
 
   _onNewMessage(socket, nickname, message) {

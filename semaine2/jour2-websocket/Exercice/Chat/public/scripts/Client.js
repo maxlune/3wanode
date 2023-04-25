@@ -39,7 +39,14 @@ class Client {
     this.socket.on("users:update", (users) => this.updateUsersList(users));
 
     this.socket.emit("user:join", this.nickname);
+
     this.showNickname();
+
+    this.socket.on("notify:typing", (nickname) => {
+      this.showTyping(nickname);
+      clearTimeout(this.typingTimeout);
+      this.typingTimeout = setTimeout(() => this.hideTyping(), 5000);
+    });
   }
 
   /**
@@ -52,6 +59,9 @@ class Client {
       event.preventDefault();
       this.sendMessage(this.$message.val());
       this.$message.val("")[0].focus();
+      this.$message.on("input", () => {
+        this.socket.emit("notify:typing", this.nickname);
+      });
     });
   }
 
@@ -76,11 +86,6 @@ class Client {
     this.$messages.prepend(html);
   }
 
-  // showNickname() {
-  //   const nicknameText = `Bienvenue ${this.nickname}`;
-  //   $(".nickname").text(nicknameText);
-  // }
-
   showNickname() {
     const html = `<p>Bienvenue <strong>${this.nickname}</strong></p>`;
     $(".nickname").html(html);
@@ -92,5 +97,14 @@ class Client {
       const html = `<li>${user}</li>`;
       this.$users.append(html);
     });
+  }
+
+  showTyping(nickname) {
+    const html = `<span>${nickname} est en train d'écrire...</span>`;
+    $(".typing").html(html);
+  }
+
+  hideTyping() {
+    $(".typing").empty();
   }
 }
