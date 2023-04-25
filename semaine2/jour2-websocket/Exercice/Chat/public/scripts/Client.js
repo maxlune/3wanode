@@ -16,8 +16,7 @@ class Client {
     this.$message = $("input#message");
     this.$messages = $("ul#messages");
     this.$users = $("ul#users");
-    this.socket.on("users:update", (users) => this.updateUsersList(users));
-    this.socket.emit("user:join", this.nickname);
+    this.$nickname = $("p#nickname");
 
     /*
             La syntaxe ({nickname, message}) est appelée en ES6 "Object param destructuring"
@@ -37,6 +36,10 @@ class Client {
     this.socket.on("message:new", ({ nickname, message }) =>
       this.receiveMessage(nickname, message)
     );
+    this.socket.on("users:update", (users) => this.updateUsersList(users));
+
+    this.socket.emit("user:join", this.nickname);
+    this.showNickname();
   }
 
   /**
@@ -71,6 +74,16 @@ class Client {
                         ${message}
                     </li>`;
     this.$messages.prepend(html);
+  }
+
+  // showNickname() {
+  //   const nicknameText = `Bienvenue ${this.nickname}`;
+  //   $(".nickname").text(nicknameText);
+  // }
+
+  showNickname() {
+    const html = `<p>Bienvenue <strong>${this.nickname}</strong></p>`;
+    $(".nickname").html(html);
   }
 
   updateUsersList(users) {

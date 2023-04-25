@@ -35,3 +35,11 @@ aside {
   display: flex;
   justify-content: space-between;
 }
+
+.nickname {
+  color: white;
+}
+
+#chat {
+  width: 80%;
+}
